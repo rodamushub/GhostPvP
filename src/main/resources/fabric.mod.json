@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "ghostpvp",
+  "version": "${version}",
+  "name": "GhostPvP",
+  "description": "Competitive PvP client — Crystal, Spear, Mace, Sword.",
+  "authors": ["ghost"],
+  "contact": {},
+  "license": "UNLICENSED",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["dev.ghost.pvp.GhostClient"]
+  },
+  "mixins": ["ghostpvp.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.20.1",
+    "fabric-api": "*",
+    "minecraft": ">=26.3-",
+    "java": ">=25"
+  }
+}

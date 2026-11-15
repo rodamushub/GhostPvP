@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "package": "dev.ghost.pvp.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [],
+  "client": [
+    "client.MinecraftClientMixin",
+    "client.GameRendererMixin",
+    "client.KeyboardMixin",
+    "combat.PlayerEntityMixin",
+    "combat.ClientPlayerInteractionManagerMixin",
+    "combat.LivingEntityMixin",
+    "movement.ClientPlayerEntityMixin",
+    "movement.JumpMixin",
+    "render.InGameHudMixin",
+    "render.GameRendererRenderMixin",
+    "render.ParticleManagerMixin",
+    "render.TotemPopMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

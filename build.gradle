@@ -1,0 +1,56 @@
+plugins {
+    id 'java'
+}
+
+version = "1.0.0"
+group = "dev.ghost"
+
+base {
+    archivesName = "ghostpvp"
+}
+
+repositories {
+    mavenCentral()
+    maven { url = "https://maven.fabricmc.net/" }
+    maven { url = "https://libraries.minecraft.net/" }
+}
+
+dependencies {
+    implementation "net.fabricmc:fabric-loader:0.20.1"
+    implementation "net.fabricmc:sponge-mixin:0.13.3+mixin.0.8.5"
+    compileOnly "net.fabricmc.fabric-api:fabric-api:0.165.0+26.3"
+
+    // MC 26.3 jar
+    compileOnly files("${System.getProperty('user.home')}/AppData/Roaming/.minecraft/versions/26.3/26.3.jar")
+
+    // libs bundlées dans le launcher minecraft — même chemin
+    compileOnly fileTree(dir: "${System.getProperty('user.home')}/AppData/Roaming/.minecraft/libraries", include: ['**/*.jar'])
+
+    // joml, lwjgl, slf4j depuis maven
+    implementation "org.joml:joml:1.10.5"
+    implementation "org.lwjgl:lwjgl:3.3.3"
+    implementation "org.lwjgl:lwjgl-glfw:3.3.3"
+    implementation "org.slf4j:slf4j-api:2.0.9"
+    implementation "com.mojang:brigadier:1.3.10"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+    it.options.release = 25
+    it.options.compilerArgs += ["-proc:none"]
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+                "MixinConfigs": "ghostpvp.mixins.json"
+        )
+    }
+    from sourceSets.main.output
+}
